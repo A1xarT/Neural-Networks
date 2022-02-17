@@ -2,3 +2,5 @@
 /Lib
 .idea
 pyvenv.*
+*Dataset*
+*pycache*
