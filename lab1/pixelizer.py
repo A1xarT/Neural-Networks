@@ -13,7 +13,8 @@ def get_keypoints():
     for j in range(size):
         for i in range(size):
             if pix[i, j] == keypoint_color:
-                points.append((i, j))
+                points.append(i)
+                points.append(j)
     return points
 
 
@@ -33,10 +34,19 @@ def convert_image(filename):
     img.convert("L").save(f'Dataset/Training_set/Without_points/{filename}')
 
 
+def convert_images(filenames, number):
+    for i in range(number):
+        convert_image(filenames[i])
+
+
 def get_all_filenames(mypath):
     return [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
 
-def convert_images(filenames, number):
-    for i in range(number):
-        convert_image(filenames[i])
+def get_all_points(path):
+    img = Image.open(path).load()
+    arr = []
+    for j in range(99):
+        for i in range(99):
+            arr.append(img[i, j])
+    return arr

@@ -14,9 +14,9 @@ def x_sum(x_values, weights):
 
 class Network:
     def __init__(self):
-        self.input_layer_size = 100 * 100 * 2
+        self.input_layer_size = 100 * 100
         self.output_layer_size = 40 * 2
-        self.hidden_layer_size = 30000
+        self.hidden_layer_size = self.input_layer_size + self.output_layer_size
 
     def train(self):
         print()
