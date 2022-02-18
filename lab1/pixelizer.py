@@ -1,13 +1,11 @@
 from PIL import Image
-from os import listdir
-from os.path import isfile, join
 import os
 
 
-def get_keypoints():
+def get_keypoints(path):
     points = []
     keypoint_color = (237, 28, 36, 255)
-    img = Image.open('Dataset/Training_set/With_points/1.png')
+    img = Image.open(path)
     pix = img.load()
     size = 100
     for j in range(size):
@@ -20,12 +18,11 @@ def get_keypoints():
 
 def set_keypoints(points, folder_name, img_name, new_folder_name):
     keypoint_color = (237, 28, 36, 255)
-    img = Image.open(folder_name + '/' + img_name)
+    img = Image.open(folder_name + img_name)
     pix = img.load()
     for i in points:
         pix[i[0], i[1]] = keypoint_color
-    # img.show()
-    img.save(new_folder_name + '/' + os.path.splitext(img_name)[0] + '.png')
+    img.save(new_folder_name + os.path.splitext(img_name)[0] + '.png')
 
 
 def convert_image(filename):
@@ -39,14 +36,10 @@ def convert_images(filenames, number):
         convert_image(filenames[i])
 
 
-def get_all_filenames(mypath):
-    return [f for f in listdir(mypath) if isfile(join(mypath, f))]
-
-
 def get_all_points(path):
-    img = Image.open(path).load()
+    img = Image.open(path, 'r').load()
     arr = []
-    for j in range(99):
-        for i in range(99):
+    for j in range(100):
+        for i in range(100):
             arr.append(img[i, j])
     return arr
